@@ -7,3 +7,8 @@
 
 (defn is-prime [x]
 	(in? x primes))
+
+(defn factorize-into-two-primes [x]
+	(if (= x (* (first primes) (first (next primes))))
+		[(first primes) (first (next primes))]
+		[]))

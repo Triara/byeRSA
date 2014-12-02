@@ -13,4 +13,12 @@
           (it "Should return true when a number is prime"
               (should (is-prime 3)))
           (it "Should return false when a number is not prime"
-              (should-not (is-prime 4))))
+              (should-not (is-prime 4)))
+          (it "Non integers are not prime numbers"
+              (should-not (is-prime 3.14))))
+
+(describe "Decomposition into two prime numbers"
+          (it "6 = 2 * 3"
+              (should= [2 3] (factorize-into-two-primes 6)))
+          (it "2 can not be decomposed"
+              (should= [] (factorize-into-two-primes 2))))
