@@ -8,7 +8,6 @@
 (defn is-prime [x]
 	(in? x primes))
 
-
 (defn iterate-over-j [x j seq-j]
 	(if (= x (* j (first seq-j)))
 		(first seq-j)
@@ -16,16 +15,12 @@
 			nil
 			(iterate-over-j x j (next seq-j)))))
 
-
-
 (defn iterate-over-i [x seq-i seq-j]
-	(if (= nil (next seq-i))
-		nil
-		(if (= nil (iterate-over-j x (first seq-i) seq-j))
-			(iterate-over-i x (next seq-i) seq-j)
-			[(first seq-i) (iterate-over-j x (first seq-i) seq-j)])))
-
-
+	(if (= nil (iterate-over-j x (first seq-i) seq-j))
+		(if (= nil (next seq-i))
+			 nil
+			 (iterate-over-i x (next seq-i) seq-j))
+		[(first seq-i) (iterate-over-j x (first seq-i) seq-j)]))
 
 (defn factorize-into-two-primes [x]
 	(if (is-prime x)
