@@ -8,12 +8,24 @@
 (defn is-prime [x]
 	(in? x primes))
 
-(defn equal-num-to-product-of-two_nums [element expected_product seq]
-	(if (= expected_product (* element (first seq)))
-		(first seq)
-		(equal-num-to-product-of-two_nums element expected_product (next seq))))
+
+(defn iterate-over-second-prime [first-prime expected-product seq-over-second-prime]
+	(if (= expected-product (* first-prime (first seq-over-second-prime)))
+		(first seq-over-second-prime)
+		(if (= (next seq-over-second-prime) nil)
+			nil
+			(iterate-over-second-prime first-prime expected-product (next seq-over-second-prime)))))
+
+
+
+(defn iterate-over-first-prime-num [expected-product seq-over-first-prime seq-over-second-prime]
+	(if (= nil (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime))
+		(iterate-over-first-prime-num expected-product (next seq-over-first-prime) seq-over-second-prime)
+		[(first seq-over-first-prime) (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime)]))
+
+
 
 (defn factorize-into-two-primes [x]
-	(if (in? x primes)
+	(if (is-prime x)
 		[]
-		[(first primes) (equal-num-to-product-of-two_nums (first primes) x primes)]))
+		(iterate-over-first-prime-num x primes primes)))

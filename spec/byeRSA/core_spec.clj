@@ -17,10 +17,12 @@
           (it "Non integers are not prime numbers"
               (should-not (is-prime 3.14))))
 
-(describe "Decomposition into two prime numbers"
-          (it "6 = 2 * 3"
+(describe "Factorization into two prime numbers"
+          (it "Factorize into first prime number with another one: 6 = 2 * 3"
               (should= [2 3] (factorize-into-two-primes 6)))
-          (it "10 = 2 * 5"
+          (it "Factorize into first prime number with another one: 10 = 2 * 5"
               (should= [2 5] (factorize-into-two-primes 10)))
-          (it "2 can not be decomposed"
-              (should= [] (factorize-into-two-primes 2))))
+          (it "A prime number can not be factorized"
+              (should= [] (factorize-into-two-primes 2)))
+          (it "Factorize into any pair of prime number, not necessarily the first one with onother one: 35 = 5 * 7"
+              (should= [5 7] (factorize-into-two-primes 35))))
