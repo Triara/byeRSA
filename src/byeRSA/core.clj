@@ -19,13 +19,15 @@
 
 
 (defn iterate-over-first-prime-num [expected-product seq-over-first-prime seq-over-second-prime]
-	(if (= nil (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime))
-		(iterate-over-first-prime-num expected-product (next seq-over-first-prime) seq-over-second-prime)
-		[(first seq-over-first-prime) (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime)]))
+	(if (= nil (next seq-over-first-prime))
+		nil
+		(if (= nil (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime))
+			(iterate-over-first-prime-num expected-product (next seq-over-first-prime) seq-over-second-prime)
+			[(first seq-over-first-prime) (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime)])))
 
 
 
 (defn factorize-into-two-primes [x]
 	(if (is-prime x)
-		[]
+		nil
 		(iterate-over-first-prime-num x primes primes)))

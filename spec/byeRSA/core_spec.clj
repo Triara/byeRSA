@@ -23,6 +23,8 @@
           (it "Factorize into first prime number with another one: 10 = 2 * 5"
               (should= [2 5] (factorize-into-two-primes 10)))
           (it "A prime number can not be factorized"
-              (should= [] (factorize-into-two-primes 2)))
+              (should= nil (factorize-into-two-primes 2)))
           (it "Factorize into any pair of prime number, not necessarily the first one with onother one: 35 = 5 * 7"
-              (should= [5 7] (factorize-into-two-primes 35))))
+              (should= [5 7] (factorize-into-two-primes 35)))
+          (it "Some numbers can not be factorized into only two primes"
+              (should= nil (factorize-into-two-primes 8))))
