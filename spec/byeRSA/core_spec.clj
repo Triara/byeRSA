@@ -20,5 +20,7 @@
 (describe "Decomposition into two prime numbers"
           (it "6 = 2 * 3"
               (should= [2 3] (factorize-into-two-primes 6)))
+          (it "10 = 2 * 5"
+              (should= [2 5] (factorize-into-two-primes 10)))
           (it "2 can not be decomposed"
               (should= [] (factorize-into-two-primes 2))))
