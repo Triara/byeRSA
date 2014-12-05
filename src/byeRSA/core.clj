@@ -9,25 +9,25 @@
 	(in? x primes))
 
 
-(defn iterate-over-second-prime [first-prime expected-product seq-over-second-prime]
-	(if (= expected-product (* first-prime (first seq-over-second-prime)))
-		(first seq-over-second-prime)
-		(if (= (next seq-over-second-prime) nil)
+(defn iterate-over-j [x j seq-j]
+	(if (= x (* j (first seq-j)))
+		(first seq-j)
+		(if (= (next seq-j) nil)
 			nil
-			(iterate-over-second-prime first-prime expected-product (next seq-over-second-prime)))))
+			(iterate-over-j x j (next seq-j)))))
 
 
 
-(defn iterate-over-first-prime-num [expected-product seq-over-first-prime seq-over-second-prime]
-	(if (= nil (next seq-over-first-prime))
+(defn iterate-over-i [x seq-i seq-j]
+	(if (= nil (next seq-i))
 		nil
-		(if (= nil (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime))
-			(iterate-over-first-prime-num expected-product (next seq-over-first-prime) seq-over-second-prime)
-			[(first seq-over-first-prime) (iterate-over-second-prime (first seq-over-first-prime) expected-product seq-over-second-prime)])))
+		(if (= nil (iterate-over-j x (first seq-i) seq-j))
+			(iterate-over-i x (next seq-i) seq-j)
+			[(first seq-i) (iterate-over-j x (first seq-i) seq-j)])))
 
 
 
 (defn factorize-into-two-primes [x]
 	(if (is-prime x)
 		nil
-		(iterate-over-first-prime-num x primes primes)))
+		(iterate-over-i x primes primes)))
