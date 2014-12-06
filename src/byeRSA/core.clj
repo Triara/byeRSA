@@ -8,6 +8,18 @@
 (defn is-prime [x]
 	(in? x primes))
 
+
+; TODO: Refactor this, rigth now this method does too many operations
+(defn divide-by-10 [x]
+	(if (> (/ x 10) 10)
+		(divide-by-10 (/ x 10))
+		(/ x 10)))
+
+(defn order-of [x]
+	(if (< x 10)
+		0
+		(Integer/numberOfTrailingZeros (/ x (divide-by-10 x)))))
+
 (defn iterate-over-j [x j seq-j]
 	(if (= x (* j (first seq-j)))
 		(first seq-j)

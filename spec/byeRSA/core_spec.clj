@@ -3,19 +3,25 @@
             [byeRSA.core :refer :all]))
 
 
-(describe "In? method just tells us if an element is contained in a seq"
+(describe "In?"
           (it "Should return true when an element is contained inside a seq"
               (should (in? 1 '(1 2 3))))
           (it "Should return false when an element is not contained inside a seq"
               (should-not (in? 4 '(1 2 3)))))
 
-(describe "Is-prime checks if an element is a prime number"
+(describe "Is-prime"
           (it "Should return true when a number is prime"
               (should (is-prime 3)))
           (it "Should return false when a number is not prime"
               (should-not (is-prime 4)))
           (it "Non integers are not prime numbers"
               (should-not (is-prime 3.14))))
+
+(describe "Order of a number"
+          (it "150 = 1,5 * 10**2 is of order 2"
+              (should= 2 (order-of 150)))
+          (it "1 = 1 * 10**0 is of order 0"
+              (should= 0 (order-of 1))))
 
 (describe "Factorization into two prime numbers"
           (it "Factorize into first prime number with another one: 6 = 2 * 3"
@@ -30,3 +36,4 @@
               (should= nil (factorize-into-two-primes 8)))
           (it "Should handle equal squares of a prime number"
               (should= [997 997] (factorize-into-two-primes 994009))))
+
