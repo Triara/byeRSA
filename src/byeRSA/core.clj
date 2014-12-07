@@ -10,15 +10,13 @@
 
 
 ; TODO: Refactor this, rigth now this method does too many operations
-(defn divide-by-10 [x]
+(defn scientific-notation-coefficient [x]
 	(if (> (/ x 10) 10)
-		(divide-by-10 (/ x 10))
+		(scientific-notation-coefficient (/ x 10))
 		(/ x 10)))
 
 (defn order-of [x]
-	(if (< x 10)
-		0
-		(Integer/numberOfTrailingZeros (/ x (divide-by-10 x)))))
+	(int (Math/floor (Math/log10 x))))
 
 (defn sort-by-order [order seq]
 	(reduce
