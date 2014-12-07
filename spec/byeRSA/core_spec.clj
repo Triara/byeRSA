@@ -23,6 +23,10 @@
           (it "1 = 1 * 10**0 is of order 0"
               (should= 0 (order-of 1))))
 
+(describe "Extract numbers of a given orden from a seq"
+          (it "Should return all numbers of order 2 from a given sequence"
+              (should= '(230 450) (sort-by-order 2 '(2 5 10 230 450 1890 29822)))))
+
 (describe "Factorization into two prime numbers"
           (it "Factorize into first prime number with another one: 6 = 2 * 3"
               (should= [2 3] (factorize-into-two-primes 6)))

@@ -20,6 +20,15 @@
 		0
 		(Integer/numberOfTrailingZeros (/ x (divide-by-10 x)))))
 
+(defn sort-by-order [order seq]
+	(reduce
+		(fn [out-seq element]
+			(if (= order (order-of element))
+				(conj out-seq element)
+				out-seq))
+		[]
+		seq))
+
 (defn iterate-over-j [x j seq-j]
 	(if (= x (* j (first seq-j)))
 		(first seq-j)
