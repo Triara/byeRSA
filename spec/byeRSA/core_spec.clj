@@ -37,7 +37,6 @@
           (it "Factorize into any pair of prime number, not necessarily the first one with onother one: 35 = 5 * 7"
               (should= [5 7] (factorize-into-two-primes 35)))
           (it "Some numbers can not be factorized into only two primes"
-              (should= nil (factorize-into-two-primes 8)))
+              (should= nil (factorize-into-two-primes 20)))
           (it "Should handle equal squares of a prime number"
               (should= [997 997] (factorize-into-two-primes 994009))))
-

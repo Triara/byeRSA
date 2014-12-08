@@ -8,8 +8,6 @@
 (defn is-prime [x]
 	(in? x primes))
 
-
-; TODO: Refactor this, rigth now this method does too many operations
 (defn scientific-notation-coefficient [x]
 	(if (> (/ x 10) 10)
 		(scientific-notation-coefficient (/ x 10))
@@ -28,18 +26,24 @@
 		seq))
 
 (defn iterate-over-j [x j seq-j]
-	(if (= x (* j (first seq-j)))
-		(first seq-j)
-		(if (= (next seq-j) nil)
-			nil
-			(iterate-over-j x j (next seq-j)))))
+	(if (= 0 (count seq-j))
+		nil
+		(if (= x (* j (first seq-j)))
+			(first seq-j)
+			(if (= (next seq-j) nil)
+				nil
+				(iterate-over-j x j (next seq-j))))))
+
 
 (defn iterate-over-i [x seq-i seq-j]
-	(if (= nil (iterate-over-j x (first seq-i) seq-j))
-		(if (= nil (next seq-i))
-			 nil
-			 (iterate-over-i x (next seq-i) seq-j))
-		[(first seq-i) (iterate-over-j x (first seq-i) seq-j)]))
+	(if (= 0 (order-of x))
+		[(first seq-i) (iterate-over-j x (first seq-i) (sort-by-order 0 seq-j))]
+		(if (= nil (iterate-over-j x (first seq-i) (sort-by-order (- (order-of x) 1 (order-of (first seq-i))) seq-j)))
+			(if (= nil (next seq-i))
+				nil
+				(iterate-over-i x (next seq-i) seq-j))
+			[(first seq-i) (iterate-over-j x (first seq-i) (sort-by-order (- (order-of x) 1 (order-of  (first seq-i))) seq-j))])))
+
 
 (defn factorize-into-two-primes [x]
 	(if (is-prime x)
