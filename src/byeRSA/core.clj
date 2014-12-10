@@ -15,6 +15,7 @@
 				nil
 				(iterate-over-j x j (next seq-j))))))
 
+; TODO: Refactor, code duplication
 
 (defn iterate-over-i [x seq-i seq-j]
 	(if (= 0 (order-of x))
