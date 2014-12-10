@@ -3,11 +3,6 @@
 (defn in? [x seq]
 	(if (some #(= x %) seq) true false))
 
-(defn scientific-notation-coefficient [x]
-	(if (> x 10)
-		(scientific-notation-coefficient x)
-		x))
-
 (defn order-of [x]
 	(int (Math/floor (Math/log10 x))))
 
